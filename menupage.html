@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+    <title>TesterWeb</title>
+</head>
+<body>
+    <div class="menuscreen" id="menuscreen">
+        <img class="close" onclick="menuClosed()"></img><br><br><br>
+
+
+        <span class="menuoptions" onclick="home()">HOME</span><br><br>
+        -<br><br>
+        <span class="menuoptions" onclick="contactpageClicked()">CONTACT US</span><br><br>
+        -<br><br>
+        <span class="menuoptions" onclick="locationpageClicked()">LOCATION</span><br><br>
+        -<br><br>
+        <span class="menuoptions" onclick="menupageClicked()">MENU</span>
+
+    </div>
+    <div class="menu" onclick="menuClicked()"></div>
+    <div class="logo" onclick="home()"></div><br><br><br><br><br><br>
+    <div class="menutext">
+        <span class="header">MENU</span><br><br>
+    </div>
+    <div class="swipe" id="swipe"></div>
+    <div class="carousel">
+        <div class="carousel-track-container">
+            <div class="carousel-track">
+                <div class="carousel-slide current-slide">
+                    <img src="imagenes/image1.png" alt="Slide 1">
+                </div>
+                <div class="carousel-slide">
+                    <img src="imagenes/image2.png" alt="Slide 2">
+                </div>
+                <div class="carousel-slide">
+                    <img src="imagenes/image3.png" alt="Slide 3">
+                </div>
+                <div class="carousel-slide">
+                    <img src="imagenes/image4.png" alt="Slide 4">
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

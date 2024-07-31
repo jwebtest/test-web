@@ -1,0 +1,292 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+
+
+body {
+    background-color: black;
+}
+
+.menu{
+    top: 0;
+    right: 0;
+    border-radius: 100%;
+    background-color: rgb(255, 77, 77);
+    z-index: 4;
+    position: fixed;
+    height: 45px;
+    aspect-ratio: 1;
+    margin-top: 160px;
+    margin-right: 30px;
+    background-image: url(imagenes/Menu.png);
+    background-size: contain; 
+    background-repeat: no-repeat; 
+    background-position: center; 
+    border-width: 2px;
+    border-style: solid;
+    border-color: black;
+    
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0; 
+    }
+    100% {
+        opacity: 1; 
+    }
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1; 
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+.menuscreen{
+    top: 0;
+    width: 100%;
+    z-index: 5;
+    position: fixed;
+    aspect-ratio: 0.4;
+    background: rgba(0, 0, 0, 0.774);
+    backdrop-filter: blur(40px); 
+    -webkit-backdrop-filter: blur(10px); 
+    opacity: 0; 
+    text-align: center;
+    color: white;
+    padding-top: 150px;
+    font-family: Ubuntu;
+    font-size: 33px;
+    text-shadow: 
+        1px 1px 0 #000, /* Shadow to the bottom right */
+        -1px -1px 0 #000, /* Shadow to the top left */
+        1px -1px 0 #000, /* Shadow to the bottom left */
+        -1px 1px 0 #000; /* Shadow to the top right */
+    display: none;
+}
+
+.menuscreen.show {
+    display: block; 
+    animation: fadeIn 0.4s ease forwards;
+}
+
+.menuscreen.disappear {
+    animation: fadeOut 0.4s ease forwards;
+    display: none;
+}
+
+.close{
+    background-image: url(imagenes/Close.png);
+    height: 34px;
+    aspect-ratio: 1;
+    background-size: contain; 
+    background-repeat: no-repeat; 
+    background-position: center;
+}
+
+.logo{
+    top: 0;
+    width: 50%;
+    margin-left: 24%;
+    aspect-ratio: 1.3;
+    z-index: 3;
+    position: absolute;
+    margin-top: 17px;
+    background-image: url(imagenes/Logo.png);
+    background-size: contain; 
+    background-repeat: no-repeat; 
+    background-position: center; 
+}
+
+.topfade{
+    background-image: linear-gradient(black, rgb(0, 0, 0) , rgba(0, 0, 0, 0.74),rgba(0, 0, 0, 0));
+    top: 0;
+    width: 100%;
+    aspect-ratio: 0.8;
+    z-index: 2;
+    position: absolute;
+    color: white;
+    font-size: 60px;
+    font-family: Ubuntu;
+    padding-left: 10px;
+}
+
+.topfade .text{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    text-shadow: 
+        3px 3px 0 #00000080, /* Shadow to the bottom right */
+        -3px -3px 0 #00000080, /* Shadow to the top left */
+        3px -3px 0 #00000080, /* Shadow to the bottom left */
+        -3px 3px 0 #00000080; /* Shadow to the top right */
+}
+
+.firstbox{
+    position: relative;
+    background-color: rgb(128, 126, 126);
+    color: white;
+    font-size: 40px;
+    border-radius: 5px;
+    z-index: 1;
+    aspect-ratio: 0.7;
+    text-align: left;
+    margin-bottom: 20px;
+    background-image: url(imagenes/Chef.jpg);
+    background-size: 490px; 
+    background-repeat: no-repeat; 
+    background-position: center; 
+}
+
+.secondbox{
+    background-color: rgb(128, 126, 126);
+    color: white;
+    border-radius: 5px;
+    z-index: 1;
+    aspect-ratio: 1;
+    margin-bottom: 10px;
+    position: relative;
+    background-image: url(imagenes/Food.jpg);
+    background-size: 990px; 
+    background-repeat: no-repeat; 
+    background-position: center; 
+}
+
+.location{
+    width: 100%;
+    aspect-ratio: 1.8;
+    padding-top: 70px;
+    color:white;
+    font-size: 20px;
+    font-family: Ubuntu;
+    margin-left: 10px;
+}
+
+.header{
+    font-size: 30px;
+    
+}
+
+.instagram{
+    background-image: url(imagenes/Instagram.png);
+    background-size: contain; 
+    background-repeat: no-repeat; 
+    background-position: center;
+    display: flex;
+    z-index: 2;
+    height: 50px;
+    aspect-ratio: 1;
+    margin-left: 50px;
+    margin-top: 10px;
+}
+
+.x{
+    background-image: url(imagenes/X.png);
+    background-size: contain; 
+    background-repeat: no-repeat; 
+    background-position: center;
+    display: flex;
+    z-index: 1;
+    height: 50px;
+    aspect-ratio: 1;
+    margin-left: 50px;
+    margin-top: 10px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: white;
+    border-radius: 10px;
+}
+
+a{
+    margin-left: 30px;
+}
+
+
+.carousel {
+    position: relative;
+    width: 80%;
+    max-width: 600px;
+    overflow: hidden;
+    margin-left: 10%;
+}
+
+.carousel-track-container {
+    overflow: hidden;
+    position: relative;
+}
+
+.carousel-track {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.carousel-slide {
+    flex: 0 0 90%; /* Slightly narrower to create space for adjacent slides */
+    margin: 0 0.5%; /* Adjust margin to create space on both sides */
+    transition: transform 0.5s ease-in-out;
+}
+
+.carousel-slide img {
+    width: 100%;
+    display: block;
+}
+
+.menutext{
+    width: 100%;
+    aspect-ratio: 3;
+    padding-top: 70px;
+    color:white;
+    font-size: 20px;
+    font-family: Ubuntu;
+    margin-left: 10px;
+}
+
+.swipe {
+    width: 65px;
+    aspect-ratio: 1;
+    margin-left: 90px;
+    margin-bottom: 10px;
+    background-image: url(imagenes/Swipe.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: 2;
+}
+
+@keyframes swipemove {
+    0% {
+        margin-left: 90px;
+    }
+    30% {
+        margin-left: 50px;
+    }
+    100% {
+        margin-left: 90px;
+    }
+}
+
+.loop {
+    animation: swipemove 0.5s ease forwards;
+}
+
+@keyframes makesmall {
+    0% {
+        background-size: 100% 100%;
+    }
+    100% {
+        background-size: 0% 0%;
+    }
+}
+
+.stoploop{
+    width: 65px;
+    aspect-ratio: 1;
+    animation: makesmall 0.3s ease forwards;
+}
+
+.reserve{
+    font-size: 22px;
+}
+
