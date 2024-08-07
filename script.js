@@ -77,75 +77,71 @@ function unhideElement(elementId) {
 
 
 
+// --------------Carrusel
+document.addEventListener('DOMContentLoaded', () => {
+    const carouselSlides = Array.from(document.querySelectorAll('.carousel-slide'));
+    const fullscreenCarousel = document.getElementById('fullscreenCarousel');
+    const fullscreenTrack = document.getElementById('fullscreenTrack');
+    const closeBtn = document.getElementById('closeBtn');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    let currentIndex = 0;
 
-//--------------Carousel
-const track = document.querySelector('.carousel-track');
-const slides = Array.from(track.children);
-const slideWidth = slides[0].getBoundingClientRect().width;
-const slideMargin = parseFloat(getComputedStyle(slides[0]).marginLeft) * 2; // Margin on both sides
+    const updateFullscreenTrack = (index) => {
+        const offset = -index * 100;
+        fullscreenTrack.style.transform = `translateX(${offset}%)`;
+        updateArrowVisibility();
+    };
 
-let startX, currentX, isDragging = false, currentIndex = 0, currentTranslate = 0, prevTranslate = 0;
+    const updateArrowVisibility = () => {
+        prevBtn.style.display = currentIndex === 0 ? 'none' : 'block';
+        nextBtn.style.display = currentIndex === carouselSlides.length - 1 ? 'none' : 'block';
+    };
 
-// Arrange slides next to each other
-const setSlidePosition = (slide, index) => {
-    slide.style.left = (slideWidth + slideMargin) * index + 'px';
-};
-slides.forEach(setSlidePosition);
+    const openFullscreen = (index) => {
+        currentIndex = index;
+        fullscreenTrack.innerHTML = '';
+        carouselSlides.forEach((slide, idx) => {
+            const slideClone = slide.cloneNode(true);
+            slideClone.classList.add('fullscreen-slide');
+            if (idx !== index) {
+                slideClone.classList.remove('current-slide');
+            }
+            fullscreenTrack.appendChild(slideClone);
+        });
+        updateFullscreenTrack(index);
+        fullscreenCarousel.style.display = 'flex';
+        updateArrowVisibility(); 
+    };
 
-const moveToSlide = (targetIndex) => {
-    const amountToMove = (slideWidth + slideMargin) * targetIndex;
-    track.style.transform = `translateX(-${amountToMove}px)`;
-    slides[currentIndex].classList.remove('current-slide');
-    slides[targetIndex].classList.add('current-slide');
-    currentIndex = targetIndex;
-};
+    const closeFullscreen = () => {
+        fullscreenCarousel.style.display = 'none';
+    };
 
-const getPositionX = event => event.touches[0].clientX;
+    const showPrevSlide = () => {
+        if (currentIndex > 0) {
+            currentIndex--;
+            updateFullscreenTrack(currentIndex);
+            updateArrowVisibility();
+        }
+    };
 
-const animation = () => {
-    track.style.transform = `translateX(${currentTranslate}px)`;
-    if (isDragging) requestAnimationFrame(animation);
-};
+    const showNextSlide = () => {
+        if (currentIndex < carouselSlides.length - 1) {
+            currentIndex++;
+            updateFullscreenTrack(currentIndex);
+            updateArrowVisibility();
+        }
+    };
 
-track.addEventListener('touchstart', (e) => {
-    stopLoop();
-    startX = getPositionX(e);
-    isDragging = true;
-    animation();
-    track.style.transition = 'none';
-    prevTranslate = currentTranslate;
-});
+    // Attach event listeners
+    carouselSlides.forEach((slide, index) => {
+        slide.addEventListener('click', () => openFullscreen(index));
+    });
 
-track.addEventListener('touchmove', (e) => {
-    if (!isDragging) return;
-    currentX = getPositionX(e);
-    const distance = currentX - startX;
-    currentTranslate = prevTranslate + distance;
-    
-    // Prevent moving past the first slide
-    if (currentTranslate > 0) {
-        currentTranslate = 0;
-    }
-
-    // Prevent moving past the last slide
-    const maxTranslate = -((slideWidth + slideMargin) * (slides.length - 1));
-    if (currentTranslate < maxTranslate) {
-        currentTranslate = maxTranslate;
-    }
-});
-
-track.addEventListener('touchend', (e) => {
-    isDragging = false;
-    track.style.transition = 'transform 0.5s ease-out';
-    const movedBy = currentTranslate - prevTranslate;
-
-    if (movedBy < -50 && currentIndex < slides.length - 1) {
-        moveToSlide(currentIndex + 1);
-    } else if (movedBy > 50 && currentIndex > 0) {
-        moveToSlide(currentIndex - 1);
-    } else {
-        moveToSlide(currentIndex);
-    }
+    closeBtn.addEventListener('click', closeFullscreen);
+    prevBtn.addEventListener('click', showPrevSlide);
+    nextBtn.addEventListener('click', showNextSlide);
 });
 
 
