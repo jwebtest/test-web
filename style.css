@@ -145,7 +145,7 @@ body {
     background-position: center; 
 }
 
-.secondbox{
+.secondbox {
     background-color: rgb(128, 126, 126);
     color: white;
     border-radius: 5px;
@@ -153,11 +153,33 @@ body {
     aspect-ratio: 1;
     margin-bottom: 10px;
     position: relative;
-    background-image: url(imagenes/Food.jpg);
-    background-size: cover; 
-    background-repeat: no-repeat; 
-    background-position: center; 
+    overflow: hidden; /* Ensures that images stay within the box */
 }
+
+.carouseltwo {
+    height: 100%;
+    width: 300%; /* Three images wide */
+    display: flex;
+    animation: slides 12s infinite; /* 3 images x 4 seconds each */
+}
+
+.carouseltwo img {
+    width: 100%; /* Each image takes up 100% of the secondbox's width */
+    height: auto;
+    object-fit: cover; /* Ensures images cover the entire area without distortion */
+}
+
+@keyframes slides {
+    1% { transform: translateX(0); }
+    31% { transform: translateX(0); }
+    38% { transform: translateX(-50%); }
+    71% { transform: translateX(-50%); }
+    78% { transform: translateX(-100%); }
+    98% { transform: translateX(-100%); }
+    99% { transform: translateX(-50%); }
+    100% { transform: translateX(0%); }
+}
+
 
 .location{
     width: 100%;
